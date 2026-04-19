@@ -29,13 +29,6 @@ import {
   X,
 } from "lucide-react";
 
-// Pastel Dream production notes:
-// 1. הנתונים כאן סטטיים לצורכי פרוטוטייפ. בהמשך: CMS / API.
-// 2. החיפוש סורק פעולות מהירות, שירותי אגפים, עדכונים ואירועים.
-// 3. מצב חירום בפרודקשן צריך להגיע מ-/api/emergency או WebSocket.
-// 4. מומלץ להגדיר Heebo ב-tailwind.config.js או לטעון ב-Head:
-// <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;500;700&display=swap" rel="stylesheet">
-
 const villages = [
   "היישוב שלי",
   "אור הנר",
@@ -106,26 +99,30 @@ const quickActions = [
     title: "תשלומים וגבייה",
     description: "ארנונה, מים ואישורים",
     icon: CreditCard,
-    bubble: "bg-blue-50 text-blue-400 group-hover:bg-blue-100 group-hover:text-blue-500",
+    bubble: "bg-blue-100/70 text-blue-500 group-hover:bg-blue-200/70 group-hover:text-blue-600",
+    card: "bg-gradient-to-br from-blue-50 to-blue-100/70 hover:from-blue-100 hover:to-blue-200/70",
   },
   {
     title: "מוקד 106",
     description: "דיווח על מפגע או תקלה",
     icon: Headphones,
-    bubble: "bg-rose-50 text-rose-400 group-hover:bg-rose-100 group-hover:text-rose-500",
+    bubble: "bg-rose-100/70 text-rose-500 group-hover:bg-rose-200/70 group-hover:text-rose-600",
+    card: "bg-gradient-to-br from-rose-50 to-rose-100/70 hover:from-rose-100 hover:to-rose-200/70",
     featured: true,
   },
   {
     title: "אישור תושב",
     description: "הפקה מקוונת ומהירה",
     icon: FileCheck,
-    bubble: "bg-slate-50 text-slate-400 group-hover:bg-slate-100 group-hover:text-slate-500",
+    bubble: "bg-white/70 text-slate-500 group-hover:bg-white group-hover:text-slate-600",
+    card: "bg-gradient-to-br from-white to-slate-100/80 hover:from-slate-50 hover:to-slate-200/70",
   },
   {
     title: "רישום לחינוך",
     description: "גנים, בתי ספר והסעות",
     icon: GraduationCap,
-    bubble: "bg-emerald-50 text-emerald-400 group-hover:bg-emerald-100 group-hover:text-emerald-500",
+    bubble: "bg-emerald-100/70 text-emerald-500 group-hover:bg-emerald-200/70 group-hover:text-emerald-600",
+    card: "bg-gradient-to-br from-emerald-50 to-emerald-100/70 hover:from-emerald-100 hover:to-emerald-200/70",
   },
 ];
 
@@ -214,7 +211,7 @@ function useScrolled() {
   return isScrolled;
 }
 
-export default function SngHomepagePrototype() {
+export default function App() {
   const [selectedVillage, setSelectedVillage] = useState("היישוב שלי");
   const [searchQuery, setSearchQuery] = useState("");
   const [searchFocused, setSearchFocused] = useState(false);
@@ -395,7 +392,7 @@ export default function SngHomepagePrototype() {
         </AnimatePresence>
       </nav>
 
-      <div className="border-b border-slate-100 bg-slate-50/50 py-2">
+      <div className="border-b border-white/60 bg-white/50 py-2 backdrop-blur-xl">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-8 text-[12px] font-medium text-slate-500">
           <div className="flex flex-wrap gap-5">
             <span className="flex items-center gap-1.5">
@@ -447,7 +444,7 @@ export default function SngHomepagePrototype() {
                 onFocus={() => setSearchFocused(true)}
                 onChange={(event) => setSearchQuery(event.target.value)}
                 placeholder="חיפוש שירות מהיר..."
-                className="w-full rounded-full border-none bg-white py-6 pl-8 pr-14 text-lg text-slate-700 shadow-xl shadow-slate-200/50 outline-none transition-all placeholder:text-slate-300 focus:ring-4 focus:ring-sky-100"
+                className="w-full rounded-full border border-white/70 bg-white/75 py-6 pl-8 pr-14 text-lg text-slate-700 shadow-2xl shadow-slate-200/50 outline-none backdrop-blur-xl transition-all placeholder:text-slate-300 focus:bg-white/90 focus:ring-4 focus:ring-sky-100"
                 aria-label="חיפוש שירות או טופס באתר"
               />
             </div>
@@ -561,7 +558,7 @@ export default function SngHomepagePrototype() {
                   <button
                     key={bubble.label}
                     type="button"
-                    className={`flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-slate-500 transition-transform hover:scale-105 ${bubble.bg}`}
+                    className={`flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium text-slate-500 shadow-sm ring-1 ring-white/60 backdrop-blur-xl transition-all hover:-translate-y-0.5 hover:scale-105 hover:shadow-md ${bubble.bg}`}
                   >
                     <Icon className={`h-4 w-4 ${bubble.color}`} strokeWidth={1.5} aria-hidden="true" />
                     {bubble.label}
@@ -593,14 +590,14 @@ export default function SngHomepagePrototype() {
                   variants={{ hidden: { opacity: 0, y: 18 }, visible: { opacity: 1, y: 0 } }}
                   whileHover={{ y: -4 }}
                   transition={{ duration: 0.2 }}
-                  className="group flex min-h-40 flex-col items-center justify-center gap-4 rounded-[2.5rem] bg-white p-7 text-center shadow-sm transition-all hover:bg-slate-50 hover:shadow-inner focus:outline-none focus:ring-4 focus:ring-sky-100"
+                  className={`group flex min-h-40 flex-col items-center justify-center gap-4 rounded-[2.5rem] p-7 text-center shadow-sm transition-all hover:-translate-y-1 hover:shadow-xl hover:shadow-slate-200/50 focus:outline-none focus:ring-4 focus:ring-sky-100 ${action.card}`}
                   aria-label={`מעבר אל ${action.title}`}
                 >
                   <span className={`rounded-2xl p-4 transition-all ${action.bubble}`}>
                     <Icon className="h-7 w-7" strokeWidth={1.5} aria-hidden="true" />
                   </span>
                   <span>
-                    <span className="block text-sm font-bold text-slate-600">{action.title}</span>
+                    <span className="block text-sm font-bold text-slate-700">{action.title}</span>
                     <span className="mt-1 block text-xs leading-relaxed text-slate-400">{action.description}</span>
                   </span>
                 </motion.button>
@@ -743,6 +740,17 @@ export default function SngHomepagePrototype() {
           </div>
         </div>
       </section>
+
+
+      <button
+        type="button"
+        onClick={() => setHighContrast((value) => !value)}
+        className="fixed right-5 top-1/2 z-50 hidden h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-sky-400 text-white shadow-xl shadow-sky-200/50 transition hover:scale-105 hover:bg-sky-500 focus:outline-none focus:ring-4 focus:ring-sky-100 md:flex"
+        aria-label="הפעלת מצב ניגודיות גבוהה"
+        aria-pressed={highContrast}
+      >
+        <Accessibility className="h-5 w-5" strokeWidth={1.5} aria-hidden="true" />
+      </button>
 
       <div className="fixed bottom-24 left-5 z-50 md:bottom-6">
         <AnimatePresence>

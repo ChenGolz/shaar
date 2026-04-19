@@ -25,3 +25,13 @@ This repo includes a GitHub Actions workflow.
 5. Wait for the Deploy Vite app to GitHub Pages workflow to finish.
 
 If you see `main.jsx 404`, GitHub Pages is serving raw source files instead of the compiled Vite `dist` build.
+
+
+## Latest Pastel Dream updates
+
+This version includes:
+- glassmorphism status bar and search field
+- pastel gradient quick-action cards
+- floating service bubbles with hover micro-interactions
+- fixed desktop accessibility button
+- GitHub Pages workflow

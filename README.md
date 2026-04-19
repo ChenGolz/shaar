@@ -1,37 +1,41 @@
-# שער הנגב דיגיטל — Homepage Prototype
+# Shaar HaNegev GitHub Pages Ready Site
 
-## Local development
+This is the safest GitHub Pages version: no Vite, no build step, no `/src/main.jsx`.
 
-```bash
-npm install
-npm run dev
-```
+## How to publish
 
-## Build
+1. Upload these files to the root of your GitHub repository:
+   - `index.html`
+   - `404.html`
+   - `.nojekyll`
+   - `README.md`
 
-```bash
-npm run build
-npm run preview
-```
+2. In GitHub, go to:
+   **Settings → Pages**
 
-## GitHub Pages
+3. Set:
+   **Build and deployment → Source → Deploy from a branch**
 
-This repo includes a GitHub Actions workflow.
+4. Choose:
+   **Branch: main**
+   **Folder: / (root)**
 
-1. Push this repo to GitHub.
-2. Go to Settings → Pages.
-3. Under Build and deployment, choose GitHub Actions.
-4. Push to `main`.
-5. Wait for the Deploy Vite app to GitHub Pages workflow to finish.
+5. Save.
 
-If you see `main.jsx 404`, GitHub Pages is serving raw source files instead of the compiled Vite `dist` build.
+Your site should work at:
 
+`https://YOUR_USERNAME.github.io/YOUR_REPO_NAME/`
 
-## Latest Pastel Dream updates
+Example:
 
-This version includes:
-- glassmorphism status bar and search field
-- pastel gradient quick-action cards
-- floating service bubbles with hover micro-interactions
-- fixed desktop accessibility button
-- GitHub Pages workflow
+`https://chengolz.github.io/shaar/`
+
+## Why this fixes `main.jsx 404`
+
+The previous Vite source version had:
+
+`<script type="module" src="/src/main.jsx"></script>`
+
+GitHub Pages cannot serve that raw source as a built app.
+
+This version is a complete static page, so it has no `/src/main.jsx` request at all.
